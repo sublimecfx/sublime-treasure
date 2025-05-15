@@ -1,3 +1,3 @@
-local version = sl.require('modules.version.server')
+local VERSION <const> = sl.require('modules.version.server')
 
-version.check('sublimecfx/sublime-treasure')
+VERSION.check('sublimecfx/sublime-treasure')
