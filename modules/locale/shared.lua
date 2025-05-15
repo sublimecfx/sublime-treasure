@@ -3,7 +3,7 @@ local DATA <const> = sl.require('locales.' .. LANG)
 
 ---@param key string
 ---@return string
-local function get(key)
+local function translate(key)
     if not DATA then 
         warn('Locale file not found for ' .. LANG .. ' locale')
         return key
@@ -19,4 +19,4 @@ local function get(key)
     return value
 end
 
-return get
+return translate
