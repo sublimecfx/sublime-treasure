@@ -8,11 +8,13 @@ author 'Atoshi (Sublime Store)'
 description 'An automatic and legal event system that regularly triggers an immersive treasure hunt in the city or rural areas.'
 version '0.0.1'
 discord 'https://discord.gg/sublimestore'
+repository 'https://github.com/sublimecfx/sublime-treasure'
 
 files {
     'locales/*.lua',
     'configs/*.lua',
     'modules/**/shared.lua',
+    'modules/**/server.lua',
     'bridge/**/client.lua',
     'bridge/**/server.lua'
 }
@@ -22,7 +24,9 @@ shared_scripts {
 }
 
 client_scripts {
+    'sources/client/*.lua'
 }
 
 server_scripts {
+    'sources/server/*.lua'
 }

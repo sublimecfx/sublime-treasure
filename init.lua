@@ -76,3 +76,5 @@ setmetatable(sl, {
         return self
     end
 })
+
+_ENV.sl = sl
