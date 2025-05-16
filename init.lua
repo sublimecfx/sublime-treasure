@@ -4,6 +4,11 @@ local SERVICE <const> = (IsDuplicityVersion() and 'server') or 'client'
 ---@field service string<"client" | "server">
 ---@field resourceName string<"sublime-treasure">
 ---@field resourceVersion string
+---@field isResourceStarted fun(resource: string): boolean
+---@field require fun(path: string): any
+---@field loadBridge fun(): any
+---@field loadConfig fun(name: string): any
+---@field loadLocale fun(): any
 local sl = {}
 
 local module_loaded = {}
@@ -60,6 +65,14 @@ local function loadConfig(name)
     return callModule('configs.' .. name)
 end
 
+local function loadLocale()
+    local locale = loadConfig('locale')
+
+    if not locale then return warn('Failed to load locale.') end
+
+    return callModule('locales.' .. locale)
+end
+
 local METADATA <const> = {
     service = SERVICE,
     resourceName = GetCurrentResourceName(),
@@ -67,7 +80,8 @@ local METADATA <const> = {
     isResourceStarted = isResourceStarted,
     require = callModule,
     loadBridge = loadBridge,
-    loadConfig = loadConfig
+    loadConfig = loadConfig,
+    loadLocale = loadLocale
 }
 
 setmetatable(sl, {

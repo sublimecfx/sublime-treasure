@@ -6,9 +6,11 @@ RegisterCommand(CONFIG.manualCommand, function(s, a, rc)
     if s ~= 0 then
         if not hasPermission(s) then
             local framework = sl.loadBridge()
-            return framework.notify(s, 'You do not have permission to use this command.', 'error', 5000)
+            local T <const> = sl.loadLocale()
+            return framework.notify(s, T['no_permission'], 'error', 5000)
         end
     end
 
-    print("test")
+    local T <const> = sl.loadLocale()
+    print(T['no_permission'])
 end)

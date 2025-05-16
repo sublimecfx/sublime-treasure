@@ -1,4 +1,4 @@
-local log = {
+local LOG <const> = {
     enabled = true,
     debug = true,
     info = true,
@@ -9,4 +9,4 @@ local log = {
     }
 }
 
-return log
+return LOG
