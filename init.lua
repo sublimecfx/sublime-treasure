@@ -66,9 +66,9 @@ local function loadConfig(name)
 end
 
 local function loadLocale()
-    local locale = loadConfig('locale')
+    local LOCALE <const> = loadConfig('locale')
 
-    if not locale then return warn('Failed to load locale.') end
+    if not LOCALE then return warn('Failed to load locale.') end
 
     return callModule('locales.' .. locale)
 end
