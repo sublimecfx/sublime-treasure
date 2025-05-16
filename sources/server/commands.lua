@@ -5,7 +5,8 @@ RegisterCommand(CONFIG.manualCommand, function(s, a, rc)
 
     if s ~= 0 then
         if not hasPermission(s) then
-            return warn('You do not have permission to use this command.')
+            local framework = sl.loadBridge()
+            return framework.notify(s, 'You do not have permission to use this command.', 'error', 5000)
         end
     end
 

@@ -15,6 +15,22 @@ local function getGroup(id, groups)
     return false
 end
 
+---@param id number
+---@param message string
+---@param type string
+---@param duration number
+local function notify(id, message, type, duration)
+    if not id or not message then return end
+
+    local player = QBCore.Functions.GetPlayer(id)
+
+    if not player then return end
+
+    return player.Functions.Notify(message, type, duration)
+end
+
+
 return {
-    getGroup = getGroup
+    getGroup = getGroup,
+    notify = notify
 }

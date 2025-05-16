@@ -17,6 +17,21 @@ local function getGroup(id, groups)
     return group
 end
 
+---@param id number
+---@param message string
+---@param type string
+---@param duration number
+local function notify(id, message, type, duration)
+    if not id or not message then return end
+
+    local player = ESX.GetPlayerFromId(id)
+
+    if not player then return end
+
+    return player.showNotification(message, type, duration)
+end
+
 return {
-    getGroup = getGroup
+    getGroup = getGroup,
+    notify = notify
 }
