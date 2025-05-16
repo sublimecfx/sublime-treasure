@@ -35,6 +35,4 @@ local function check(repository)
 	end)
 end
 
-return {
-    check = check
-}
+return check
