@@ -49,6 +49,12 @@ local function isResourceStarted(resource)
     return GetResourceState(resource) == 'started'
 end
 
+---@param name string
+---@return table
+local function loadConfig(name)
+    return callModule('configs.' .. name)
+end
+
 local function loadBridge()
     if isResourceStarted('es_extended') then
         return callModule('bridge.esx.' .. SERVICE)
@@ -59,18 +65,12 @@ local function loadBridge()
     end
 end
 
----@param name string
----@return table
-local function loadConfig(name)
-    return callModule('configs.' .. name)
-end
-
 local function loadLocale()
     local LOCALE <const> = loadConfig('locale')
 
     if not LOCALE then return warn('Failed to load locale.') end
 
-    return callModule('locales.' .. locale)
+    return callModule('locales.' .. LOCALE)
 end
 
 local METADATA <const> = {
