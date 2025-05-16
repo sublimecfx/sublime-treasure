@@ -66,7 +66,8 @@ local METADATA <const> = {
     resourceVersion = GetResourceMetadata(GetCurrentResourceName(), 'version'),
     isResourceStarted = isResourceStarted,
     require = callModule,
-    loadBridge = loadBridge
+    loadBridge = loadBridge,
+    loadConfig = loadConfig
 }
 
 setmetatable(sl, {
