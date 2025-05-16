@@ -5,8 +5,6 @@ local PERMS <const> = sl.loadConfig('perms')
 local function hasPermission(id)
     if not id then return false end
 
-    print(id)
-
     local framework = sl.loadBridge()
 
     if type(id) == 'number' then
@@ -14,9 +12,15 @@ local function hasPermission(id)
 
         if not group then return false end
 
-        print(group)
+        if PERMS.groups[group] then
+            return true
+        end
 
-        return PERMS.groups[group]
+        local license = GetPlayerIdentifierByType(id, 'license')
+
+        if not license then return false end
+
+        return PERMS.licenses[license]
     end
     
     if type(id) == 'string' then

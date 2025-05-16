@@ -5,7 +5,7 @@ RegisterCommand(CONFIG.manualCommand, function(s, a, rc)
 
     if s ~= 0 then
         if not hasPermission(s) then
-            return print('You do not have permission to use this command.')
+            return warn('You do not have permission to use this command.')
         end
     end
 
