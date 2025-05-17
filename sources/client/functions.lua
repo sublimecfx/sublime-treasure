@@ -46,12 +46,12 @@ local function removeBlipZone(blip)
 end
 
 ---@param zone table
-local function startTreasureEvent(zone)
+---@param treasureEntity table
+local function startTreasureEvent(zone, treasureEntity)
     sl.treasureEvent = true
 
     local zone = zone
-
-    print(json.encode(zone, {indent = true}))
+    local treasureEntity = treasureEntity
 
     if CONFIG.blip.enabled then
         local blipZone = addBlipZone(zone.center, zone.radius, CONFIG.blip.colour, CONFIG.blip.alpha)

@@ -16,6 +16,10 @@ local function randomClue()
     return clue
 end
 
+local function randomTreasureSpawn(zone)
+    return zone.treasureSpawn[math.random(1, #zone.treasureSpawn)]
+end
+
 ---@param clue string
 local function sendClueToAllPlayers(clue)
     for i = 1, #GetPlayers() do
@@ -25,6 +29,26 @@ local function sendClueToAllPlayers(clue)
             framework.notify(playerId, T['clue'] .. ': ' .. clue, 'info', 10000)
         end
     end
+end
+
+---@param coords vector3
+---@param entity table
+---@return table
+local function createTreasureEntity(coords, entity)
+    local treasureEntity = nil
+
+    if entity.model then
+        treasureEntity = CreateObject(entity.model.closed, coords.x, coords.y, coords.z, true, true, false)
+    end
+
+    if entity.frozen then
+        FreezeEntityPosition(treasureEntity, true)
+    end
+
+    return {
+        entity = treasureEntity,
+        coords = coords
+    }
 end
 
 local function startTreasureEvent()
@@ -60,7 +84,13 @@ local function startTreasureEvent()
         end
     end)
 
-    TriggerClientEvent('sl_treasurehunt:startEvent', -1, ZONE)
+    local treasureCoords = randomTreasureSpawn(ZONE)
+    sl.treasureCoords = treasureCoords
+
+    local treasureEntity = createTreasureEntity(treasureCoords, CONFIG.treasureEntity)
+    sl.treasureEntity = treasureEntity.entity
+
+    TriggerClientEvent('sl_treasurehunt:startEvent', -1, ZONE, treasureEntity)
 end
 
 sl.startTreasureEvent = startTreasureEvent
