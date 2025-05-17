@@ -2,8 +2,8 @@ local ZONES <const> = {
     {
         center = vec3(1132.8879394531, 332.70129394531, 91.19059753418),
         clues = {
-            {"Un trésor perdu traîne dans les bois"},
-            {"Le trésor sent l'odeur de l'eau"}
+            "Un trésor perdu traîne dans les bois",
+            "Le trésor sent l'odeur de l'eau"
         },
         treasureSpawn = {
             vec3(1150.8118896484, 306.47473144531, 91.193130493164),
