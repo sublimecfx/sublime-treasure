@@ -8,17 +8,15 @@ local T <const> = sl.loadLocale()
 ---@param name string
 ---@return number
 local function addBlip(coords, sprite, scale, colour, name)
-    if not coords or not sprite or not scale or not colour or not name then return warn('addBlip: missing args') end
-
     local blip = AddBlipForCoord(coords.x, coords.y, coords.z)
 
-    SetBlipSprite(blip, sprite)
+    SetBlipSprite(blip, (sprite or 1))
     SetBlipDisplay(blip, 6)
-    SetBlipScale(blip, scale)
-    SetBlipColour(blip, colour)
+    SetBlipScale(blip, (scale or 1.0))
+    SetBlipColour(blip, (colour or 1))
     SetBlipAsShortRange(blip, true)
     BeginTextCommandSetBlipName("STRING")
-    AddTextComponentString(name)
+    AddTextComponentString((name or 'Treasure Hunt'))
     EndTextCommandSetBlipName(blip)
 
     return blip
@@ -30,16 +28,11 @@ end
 ---@param alpha number
 ---@return number
 local function addBlipZone(coords, radius, colour, alpha)
-    if not coords or not radius or not colour or not alpha then return warn('addBlipZone: missing args') end
-
-    print(coords, radius, colour, alpha)
-
     local blip = AddBlipForRadius(coords.x, coords.y, coords.z, tonumber(radius))
 
-    SetBlipColour(blip, colour)
-    SetBlipAlpha(blip, alpha)
+    SetBlipColour(blip, (colour or 1))
+    SetBlipAlpha(blip, (alpha or 125))
 
-    print(blip)
     return blip
 end
 
