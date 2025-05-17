@@ -10,6 +10,14 @@ local MAIN <const> = {
         {type = 'money', amount = 100, chance = 80},
         {type = 'weapon', name = 'weapon_pistol', amount = 1, chance = 10},
         {type = 'car', name = 'adder', chance = 5}
+    },
+
+    blip = {
+        enabled = true,
+        colour = 5,
+        alpha = 125,
+        sprite = 835,
+        scale = 0.7
     }
 }
 
