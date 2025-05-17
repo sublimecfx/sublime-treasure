@@ -22,13 +22,13 @@ local function sendClueToAllPlayers(clue)
         local playerId = i
 
         if playerId then
-            framework.notify(playerId, T('clue') .. ': ' .. clue, 'info', 10000)
+            framework.notify(playerId, T['clue'] .. ': ' .. clue, 'info', 10000)
         end
     end
 end
 
 local function startTreasureEvent()
-    if sl.treasureEvent then return warn(T('start_failed_already_started')) end
+    if sl.treasureEvent then return warn(T['start_failed_already_started']) end
 
     sl.treasureEvent = true
     sl.treasureEventStartTime = os.time()
@@ -36,7 +36,7 @@ local function startTreasureEvent()
 
     local ZONE <const> = randomZone()
 
-    if not ZONE then return warn(T('start_failed_no_zone')) end
+    if not ZONE then return warn(T['start_failed_no_zone']) end
 
     sl.treasureEventZone = ZONE
     sl.treasureEventClues = ZONE.clues

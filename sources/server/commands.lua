@@ -11,5 +11,5 @@ RegisterCommand(CONFIG.manualCommand, function(s, a, rc)
         end
     end
 
-    print("test")
+    sl.startTreasureEvent()
 end)
