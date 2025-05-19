@@ -6,8 +6,12 @@ local QBCore = exports['qb-core']:GetCoreObject()
 local function getGroup(id, groups)
     if not id then return false end
 
+    local license = GetPlayerIdentifierByType(id, 'license')
+
+    if not license then return false end
+
     for k, v in pairs(groups) do
-        if IsPlayerAceAllowed(id, 'qbcore.' .. k) then
+        if IsPlayerAceAllowed(license, 'qbcore.' .. k) then
             return k
         end
     end
