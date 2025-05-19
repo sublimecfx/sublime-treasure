@@ -30,15 +30,13 @@ local function startTreasureEvent(zone, treasureCoords)
 
     CreateThread(function()
         while sl.treasureEvent do
-            print('loop')
             local interval = 5000
             local playerPed = PlayerPedId()
             local playerCoords = GetEntityCoords(playerPed)
             local treasureDistance = #(playerCoords - sl.treasureCoords)
             local PROP <const> = sl.require('modules.prop.client')
 
-            if treasureDistance <= 10.0 then
-                print('loop 2')
+            if treasureDistance <= 50.0 then
                 interval = 1000
 
                 if not sl.treasureEntity then
@@ -51,11 +49,8 @@ local function startTreasureEvent(zone, treasureCoords)
                     print('Treasure found')
                 end
             else
-                print('loop 3')
                 if sl.treasureEntity then
                     PROP.delete(sl.treasureEntity)
-                    DeleteObject(sl.treasureEntity)
-                    DeleteEntity(sl.treasureEntity)
                     sl.treasureEntity = nil
                 end
             end
@@ -64,5 +59,9 @@ local function startTreasureEvent(zone, treasureCoords)
         end
     end)
 end
+
+RegisterCommand('del', function ()
+    DeleteObject(sl.treasureEntity)
+end)
 
 sl.startTreasureEvent = startTreasureEvent
