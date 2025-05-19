@@ -1,9 +1,8 @@
-local CONFIG <const> = sl.loadConfig('main')
-local ZONES <const> = sl.loadConfig('zones')
 local T <const> = sl.loadLocale()
-local framework = sl.loadBridge()
 
 local function randomZone()
+    local ZONES <const> = sl.loadConfig('zones')
+
     return ZONES[math.random(1, #ZONES)]
 end
 
@@ -24,34 +23,21 @@ end
 
 ---@param clue string
 local function sendClueToAllPlayers(clue)
+    local FRAMEWORK <const> = sl.loadBridge()
+    
     for i = 1, #GetPlayers() do
         local playerId = i
 
         if playerId then
-            framework.notify(playerId, T['clue'] .. ': ' .. clue, 'info', 10000)
+            FRAMEWORK.notify(playerId, T['clue'] .. ': ' .. clue, 'info', 10000)
         end
     end
 end
 
----@param coords vector3
----@param entity table
----@return table
-local function createTreasureEntity(coords, entity)
-    local treasureEntity = nil
-
-    if entity.model then
-        treasureEntity = CreateObject(entity.model.closed, coords.x, coords.y, coords.z, true, true, false)
-    end
-
-    if entity.frozen then
-        FreezeEntityPosition(treasureEntity, true)
-    end
-
-    return treasureEntity
-end
-
 local function startTreasureEvent()
     if sl.treasureEvent then return warn(T['start_failed_already_started']) end
+
+    local CONFIG <const> = sl.loadConfig('main')
 
     sl.treasureEvent = true
     sl.treasureEventStartTime = os.time()
@@ -90,7 +76,8 @@ local function startTreasureEvent()
     local treasureCoords = randomTreasureSpawn(ZONE)
     sl.treasureCoords = treasureCoords
 
-    local treasureEntity = createTreasureEntity(treasureCoords, CONFIG.treasureEntity)
+    local PROP <const> = sl.require('modules.prop.server')
+    local treasureEntity = PROP.create(CONFIG.treasureEntity.model.closed, treasureCoords, true)
     sl.treasureEntity = treasureEntity
 
     TriggerClientEvent('sl_treasurehunt:startEvent', -1, ZONE, treasureCoords)
