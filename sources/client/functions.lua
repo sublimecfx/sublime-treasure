@@ -60,8 +60,4 @@ local function startTreasureEvent(zone, treasureCoords)
     end)
 end
 
-RegisterCommand('del', function ()
-    DeleteObject(sl.treasureEntity)
-end)
-
 sl.startTreasureEvent = startTreasureEvent

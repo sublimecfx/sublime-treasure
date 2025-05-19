@@ -86,9 +86,8 @@ local METADATA <const> = {
 
 setmetatable(sl, {
     __index = METADATA,
-    __call = function(self, key, value)
+    __newindex = function(self, key, value)
         rawset(self, key, value)
-        return self
     end
 })
 
