@@ -8,6 +8,8 @@ local function randomZone()
 end
 
 local function randomClue()
+    if not next(sl.treasureEventClues) then return false end
+
     local index = math.random(1, #sl.treasureEventClues)
     local clue = sl.treasureEventClues[index]
 
@@ -79,7 +81,9 @@ local function startTreasureEvent()
 
             local CLUE <const> = randomClue()
 
-            sendClueToAllPlayers(CLUE)
+            if CLUE then
+                sendClueToAllPlayers(CLUE)
+            end
         end
     end)
 
