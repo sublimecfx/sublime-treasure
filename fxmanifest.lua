@@ -15,6 +15,7 @@ files {
     'configs/*.lua',
     'modules/**/shared.lua',
     'modules/**/server.lua',
+    'modules/**/client.lua',
     'bridge/**/client.lua',
     'bridge/**/server.lua'
 }
