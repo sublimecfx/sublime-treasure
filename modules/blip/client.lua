@@ -2,7 +2,7 @@
 ---@param data table
 ---@return number
 local function add(coords, data)
-    if not coords or type(coords) ~= 'table' then return end
+    if not coords then return end
 
     local blip = AddBlipForCoord(coords.x, coords.y, coords.z)
 
@@ -24,9 +24,7 @@ end
 ---@param radius number
 ---@return number
 local function addZone(coords, data, radius)
-    if not coords or type(coords) ~= 'table' then return end
-
-    if not radius or type(radius) ~= 'number' then return end
+    if not coords or not radius then return end
 
     local blip = AddBlipForRadius(coords.x, coords.y, coords.z, radius)
 
