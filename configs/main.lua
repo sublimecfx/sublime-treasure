@@ -26,6 +26,11 @@ local MAIN <const> = {
         model = {
             closed = 'prop_box_wood05a',
             opened = 'prop_box_wood05b'
+        },
+        data = {
+            frozen = true,
+            collision = true,
+            invulnerable = true
         }
     }
 }
