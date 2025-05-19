@@ -2,12 +2,12 @@ local CONFIG <const> = sl.loadConfig('main')
 local T <const> = sl.loadLocale()
 
 ---@param zone table
----@param treasureEntity table
-local function startTreasureEvent(zone, treasureEntity)
+---@param treasureCoords table
+local function startTreasureEvent(zone, treasureCoords)
     sl.treasureEvent = true
+    sl.treasureCoords = treasureCoords
 
     local zone = zone
-    local treasureEntity = treasureEntity
 
     if CONFIG.blip.enabled then
         local BLIP <const> = sl.require('modules.blip.client')

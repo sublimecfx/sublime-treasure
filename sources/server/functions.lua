@@ -45,10 +45,7 @@ local function createTreasureEntity(coords, entity)
         FreezeEntityPosition(treasureEntity, true)
     end
 
-    return {
-        entity = treasureEntity,
-        coords = coords
-    }
+    return treasureEntity
 end
 
 local function startTreasureEvent()
@@ -73,6 +70,8 @@ local function startTreasureEvent()
                 sl.treasureEventStartTime = nil
                 sl.treasureEventEndTime = nil
                 sl.treasureEventClues = nil
+                sl.treasureCoords = nil
+                sl.treasureEntity = nil
                 break
             end
 
@@ -88,9 +87,9 @@ local function startTreasureEvent()
     sl.treasureCoords = treasureCoords
 
     local treasureEntity = createTreasureEntity(treasureCoords, CONFIG.treasureEntity)
-    sl.treasureEntity = treasureEntity.entity
+    sl.treasureEntity = treasureEntity
 
-    TriggerClientEvent('sl_treasurehunt:startEvent', -1, ZONE, treasureEntity)
+    TriggerClientEvent('sl_treasurehunt:startEvent', -1, ZONE, treasureCoords)
 end
 
 sl.startTreasureEvent = startTreasureEvent

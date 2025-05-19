@@ -36,7 +36,7 @@ end
 
 ---@param blip number
 local function remove(blip)
-    if not blip or type(blip) ~= 'number' then return end
+    if not blip then return end
 
     if DoesBlipExist(blip) then
         RemoveBlip(blip)
