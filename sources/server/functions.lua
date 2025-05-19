@@ -38,6 +38,7 @@ local function startTreasureEvent()
     if sl.treasureEvent then return warn(T['start_failed_already_started']) end
 
     local CONFIG <const> = sl.loadConfig('main')
+    local PROP <const> = sl.require('modules.prop.server')
 
     sl.treasureEvent = true
     sl.treasureEventStartTime = os.time()
@@ -53,6 +54,8 @@ local function startTreasureEvent()
     CreateThread(function()
         while sl.treasureEvent do
             if os.time() >= sl.treasureEventEndTime then
+                PROP.delete(sl.treasureEntity)
+                
                 sl.treasureEvent = false
                 sl.treasureEventZone = nil
                 sl.treasureEventStartTime = nil
@@ -76,7 +79,6 @@ local function startTreasureEvent()
     local treasureCoords = randomTreasureSpawn(ZONE)
     sl.treasureCoords = treasureCoords
 
-    local PROP <const> = sl.require('modules.prop.server')
     local treasureEntity = PROP.create(CONFIG.treasureEntity.model.closed, treasureCoords, true)
     sl.treasureEntity = treasureEntity
 
