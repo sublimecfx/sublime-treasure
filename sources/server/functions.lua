@@ -1,9 +1,9 @@
 local T <const> = sl.loadLocale()
 
-local function randomZone()
-    local ZONES <const> = sl.loadConfig('zones')
-
-    return ZONES[math.random(1, #ZONES)]
+---@param t table
+---@return any
+local function random(t)
+    return t[math.random(1, #t)]
 end
 
 local function randomClue()
@@ -15,10 +15,6 @@ local function randomClue()
     table.remove(sl.treasureEventClues, index)
 
     return clue
-end
-
-local function randomTreasureSpawn(zone)
-    return zone.treasureSpawn[math.random(1, #zone.treasureSpawn)]
 end
 
 ---@param clue string
@@ -44,7 +40,7 @@ local function startTreasureEvent()
     sl.treasureEventStartTime = os.time()
     sl.treasureEventEndTime = sl.treasureEventStartTime + CONFIG.eventDuration
 
-    local ZONE <const> = randomZone()
+    local ZONE <const> = random(sl.loadConfig('zones'))
 
     if not ZONE then return warn(T['start_failed_no_zone']) end
 
@@ -55,7 +51,7 @@ local function startTreasureEvent()
         while sl.treasureEvent do
             if os.time() >= sl.treasureEventEndTime then
                 PROP.delete(sl.treasureEntity)
-                
+
                 sl.treasureEvent = false
                 sl.treasureEventZone = nil
                 sl.treasureEventStartTime = nil
@@ -76,7 +72,7 @@ local function startTreasureEvent()
         end
     end)
 
-    local treasureCoords = randomTreasureSpawn(ZONE)
+    local treasureCoords = random(ZONE)
     sl.treasureCoords = treasureCoords
 
     local treasureEntity = PROP.create(CONFIG.treasureEntity.model.closed, treasureCoords, true)
