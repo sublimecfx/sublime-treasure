@@ -5,5 +5,6 @@ return {
     ["blip_name"] = "Schlüssel",
     ["treasure_pickup"] = "~INPUT_PICKUP~ um den Schatz zu sammeln",
     ["stop_failed_not_started"] = "Schlüssel konnte nicht gefunden werden.",
-    ["treasure_found"] = "Der Schatz wurde gefunden!"
+    ["treasure_found"] = "Der Schatz wurde gefunden!",
+    ["treasure_reward"] = "Du hast %s x%s gewonnen!"
 }

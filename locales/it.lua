@@ -5,5 +5,6 @@ return {
     ["blip_name"] = "Cacciata del tesoro",
     ["treasure_pickup"] = "~INPUT_PICKUP~ per raccogliere il tesoro",
     ["stop_failed_not_started"] = "Impossibile interrompere l'evento di cacciata del tesoro. Non è in corso.",
-    ["treasure_found"] = "Il tesoro è stato trovato!"
+    ["treasure_found"] = "Il tesoro è stato trovato!",
+    ["treasure_reward"] = "Hai vinto %s x%s!"
 }

@@ -5,5 +5,6 @@ return {
     ["blip_name"] = "Treasure Hunt",
     ["treasure_pickup"] = "~INPUT_PICKUP~ to collect the treasure",
     ["stop_failed_not_started"] = "Failed to stop treasure event. Not started.",
-    ["treasure_found"] = "The treasure has been found!"
+    ["treasure_found"] = "The treasure has been found!",
+    ["treasure_reward"] = "You have won %s x%s!"
 }

@@ -31,7 +31,38 @@ local function notify(id, message, type, duration)
     return player.showNotification(message, type, duration)
 end
 
+---@param id number
+---@param name string
+---@param amount number
+local function addItem(id, name, amount)
+    if not id or not name or not amount then return end
+end
+
+---@param id number
+---@param amount number
+local function addMoney(id, amount)
+    if not id or not amount then return false end
+end
+
+---@param id number
+---@param name string
+---@param amount number
+local function addWeapon(id, name, amount)
+    if not id or not name or not amount then return false end
+end
+
+---@param id number
+---@param name string
+---@param amount number
+local function addVehicle(id, name, amount)
+    if not id or not name or not amount then return false, nil, nil end
+end
+
 return {
     getGroup = getGroup,
-    notify = notify
+    notify = notify,
+    addItem = addItem,
+    addMoney = addMoney,
+    addWeapon = addWeapon,
+    addVehicle = addVehicle
 }

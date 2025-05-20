@@ -20,22 +20,20 @@ RegisterNetEvent('sl_treasurehunt:openTreasure', function()
     local reward = sl.randomWithChance(CONFIG.rewards)
 
     if reward.type == 'item' then
-        print(reward.name, reward.amount)
-        return
+        FRAMEWORK.addItem(winner, reward.name, reward.amount)
     end
 
     if reward.type == 'money' then
-        print(reward.amount)
-        return
+        FRAMEWORK.addMoney(winner, reward.amount)
     end
 
     if reward.type == 'weapon' then
-        print(reward.name, reward.amount)
-        return
+        FRAMEWORK.addWeapon(winner, reward.name, reward.amount)
     end
     
     if reward.type == 'car' then
-        print(reward.name)
-        return
+        FRAMEWORK.addVehicle(winner, reward.name, reward.amount)
     end
+
+    FRAMEWORK.notify(winner, T["treasure_reward"]:format(reward.label, reward.amount), 'success', 5000)
 end)

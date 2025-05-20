@@ -6,10 +6,10 @@ local MAIN <const> = {
     target = false, -- ox_target and qb-target supported
 
     rewards = {
-        {type = 'item', name = 'water', amount = 2, chance = 20},
-        {type = 'money', amount = 100, chance = 80},
-        {type = 'weapon', name = 'weapon_pistol', amount = 1, chance = 10},
-        {type = 'car', name = 'adder', chance = 5}
+        {type = 'item', name = 'water', label = 'Water', amount = 2, chance = 20}, -- 20% chance to get 2 water
+        {type = 'money', label = 'Money', amount = 100, chance = 80}, -- 80% chance to get 100 money
+        {type = 'weapon', label = 'Pistol', name = 'weapon_pistol', amount = 1, chance = 10}, -- 10% chance to get 1 pistol
+        {type = 'car', label = 'Adder', name = 'adder', amount = 1, chance = 5} -- 5% chance to get an adder
         -- ...
     },
 

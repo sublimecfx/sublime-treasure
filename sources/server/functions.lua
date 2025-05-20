@@ -52,6 +52,8 @@ local function stopTreasureEvent()
     sl.treasureCoords = nil
 end
 
+---@param t table
+---@return any
 local function randomWithChance(t)
     local totalChance = 0
 
