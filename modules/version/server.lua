@@ -1,4 +1,4 @@
-local function check(repository)
+local function check(repository) -- https://github.com/overextended/ox_lib/blob/master/resource/version/server.lua
     local resource = GetInvokingResource() or GetCurrentResourceName()
 
 	local currentVersion = GetResourceMetadata(resource, 'version', 0)

@@ -1,7 +1,6 @@
 local MAIN <const> = {
     eventFrequency = 1000 * 60 * 60 * 3, -- 3 hours
     eventDuration = 1000 * 60 * 60 * 1, -- 1 hour
-    clueSentTime = 1000 * 60 * 10, -- 10 minutes
 
     manualCommand = 'starttreasurehunt',
     target = 'ox_target', -- ox_target or qb-target

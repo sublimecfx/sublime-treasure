@@ -6,30 +6,6 @@ local function random(t)
     return t[math.random(1, #t)]
 end
 
-local function randomClue()
-    if not next(sl.treasureEventClues) then return false end
-
-    local index = math.random(1, #sl.treasureEventClues)
-    local clue = sl.treasureEventClues[index]
-
-    table.remove(sl.treasureEventClues, index)
-
-    return clue
-end
-
----@param clue string
-local function sendClueToAllPlayers(clue)
-    local FRAMEWORK <const> = sl.loadBridge()
-    
-    for i = 1, #GetPlayers() do
-        local playerId = i
-
-        if playerId then
-            FRAMEWORK.notify(playerId, T['clue'] .. ': ' .. clue, 'info', 10000)
-        end
-    end
-end
-
 local function startTreasureEvent()
     if sl.treasureEvent then return warn(T['start_failed_already_started']) end
 
@@ -44,7 +20,6 @@ local function startTreasureEvent()
     if not ZONE then return warn(T['start_failed_no_zone']) end
 
     sl.treasureEventZone = ZONE
-    sl.treasureEventClues = ZONE.clues
 
     CreateThread(function()
         while sl.treasureEvent do
@@ -53,18 +28,11 @@ local function startTreasureEvent()
                 sl.treasureEventZone = nil
                 sl.treasureEventStartTime = nil
                 sl.treasureEventEndTime = nil
-                sl.treasureEventClues = nil
                 sl.treasureCoords = nil
                 break
             end
 
-            Wait(CONFIG.clueSentTime)
-
-            local CLUE <const> = randomClue()
-
-            if CLUE then
-                sendClueToAllPlayers(CLUE)
-            end
+            Wait(10000)
         end
     end)
 
