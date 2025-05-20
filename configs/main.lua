@@ -3,7 +3,7 @@ local MAIN <const> = {
     eventDuration = 1000 * 60 * 60 * 1, -- 1 hour
 
     manualCommand = 'starttreasurehunt',
-    target = 'ox_target', -- ox_target or qb-target
+    target = true, -- ox_target and qb-target supported
 
     rewards = {
         {type = 'item', name = 'water', amount = 2, chance = 20},

@@ -1,3 +1,9 @@
+local function displayHelpText(text)
+    BeginTextCommandDisplayHelp("STRING")
+    AddTextComponentSubstringPlayerName(text)
+    EndTextCommandDisplayHelp(1, false, false, 0)
+end
+
 ---@param zone table
 ---@param treasureCoords table
 local function startTreasureEvent(zone, treasureCoords)
@@ -45,9 +51,13 @@ local function startTreasureEvent(zone, treasureCoords)
                     sl.treasureEntity = prop
                 end
 
-                if treasureDistance <= 5.0 then
+                if treasureDistance <= 3.0 then
                     interval = 0
-                    print('Treasure found')
+                    displayHelpText(T['treasure_found'])
+                    SetFloatingHelpTextStyle(0, 2, 2, 0, 3, 0)
+                    local entityCoords = GetEntityCoords(sl.treasureEntity)
+                    local offset = GetEntityHeightAboveGround(sl.treasureEntity) + 1.0
+                    SetFloatingHelpTextWorldPosition(0, entityCoords.x, entityCoords.y, entityCoords.z + offset)
                 end
             else
                 if sl.treasureEntity then

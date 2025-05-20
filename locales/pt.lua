@@ -2,5 +2,6 @@ return {
     ["no_permission"] = "Você não tem permissão para usar este comando.",
     ["start_failed_no_zone"] = "Não foi possível iniciar o evento de caçada de tesouro. Nenhuma zona encontrada.",
     ["start_failed_already_started"] = "Não foi possível iniciar o evento de caçada de tesouro. Já está em andamento.",
-    ["blip_name"] = "Caçada de tesouro"
+    ["blip_name"] = "Caçada de tesouro",
+    ["treasure_found"] = "~INPUT_PICKUP~ para coletar o tesouro"
 }

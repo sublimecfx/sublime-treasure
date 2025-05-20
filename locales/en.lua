@@ -2,5 +2,6 @@ return {
     ["no_permission"] = "You do not have permission to use this command.",
     ["start_failed_no_zone"] = "Failed to start treasure event. No zone found.",
     ["start_failed_already_started"] = "Failed to start treasure event. Already started.",
-    ["blip_name"] = "Treasure Hunt"
+    ["blip_name"] = "Treasure Hunt",
+    ["treasure_found"] = "~INPUT_PICKUP~ to collect the treasure"
 }
