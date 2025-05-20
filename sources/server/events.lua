@@ -5,7 +5,8 @@ RegisterNetEvent('sl_treasurehunt:openTreasure', function()
 
     local winnerPed = GetPlayerPed(winner)
     local winnerCoords = GetEntityCoords(winnerPed)
-    local distance = #(winnerCoords - sl.treasureCoords)
+    local tcv3 = vec3(sl.treasureCoords.x, sl.treasureCoords.y, sl.treasureCoords.z)
+    local distance = #(winnerCoords - tcv3)
     local T <const> = sl.loadLocale()
 
     if distance > 5 then 
