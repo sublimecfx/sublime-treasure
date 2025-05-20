@@ -9,6 +9,10 @@ local function create(model, coords, data)
         prop = CreateObject(model, coords.x, coords.y, coords.z, false, false, false)
     end
 
+    if coords.w then 
+        SetEntityHeading(prop, coords.w)
+    end
+
     if data.frozen then
         FreezeEntityPosition(prop, true)
     end

@@ -33,14 +33,15 @@ local function startTreasureEvent(zone, treasureCoords)
             local interval = 5000
             local playerPed = PlayerPedId()
             local playerCoords = GetEntityCoords(playerPed)
-            local treasureDistance = #(playerCoords - sl.treasureCoords)
+            local tcv3 = vec3(treasureCoords.x, treasureCoords.y, treasureCoords.z)
+            local treasureDistance = #(playerCoords - tcv3)
             local PROP <const> = sl.require('modules.prop.client')
 
             if treasureDistance <= 50.0 then
                 interval = 1000
 
                 if not sl.treasureEntity then
-                    local prop = PROP.create(CONFIG.treasureEntity.model.closed, sl.treasureCoords, CONFIG.treasureEntity.data)
+                    local prop = PROP.create(CONFIG.treasureEntity.model.closed, treasureCoords, CONFIG.treasureEntity.data)
                     sl.treasureEntity = prop
                 end
 
