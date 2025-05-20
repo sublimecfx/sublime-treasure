@@ -6,5 +6,8 @@ return {
     ["treasure_pickup"] = "~INPUT_PICKUP~ um den Schatz zu sammeln",
     ["stop_failed_not_started"] = "Schlüssel konnte nicht gefunden werden.",
     ["treasure_found"] = "Der Schatz wurde gefunden!",
-    ["treasure_reward"] = "Du hast %s x%s gewonnen!"
+    ["treasure_reward"] = "Du hast %s x%s gewonnen!",
+    ["cheat_detected"] = "Cheat erkannt! Du hast den Schlüssel 'openTreasure' gefunden, obwohl der Schatz nicht in der Nähe war.",
+    ["teleported_to_treasure"] = "Du wurdest zum Schatz teleportiert.",
+    ["treasure_event_not_found"] = "Der Schatz wurde nicht gefunden."
 }

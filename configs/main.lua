@@ -5,6 +5,7 @@ local MAIN <const> = {
     eventDuration = 1000 * 60 * 60 * 1, -- 1 hour
 
     manualCommand = 'starttreasurehunt',
+    tpCommand = 'gototreasure', -- Command to teleport to the treasure
     target = false, -- ox_target and qb-target supported by default
 
     rewards = {

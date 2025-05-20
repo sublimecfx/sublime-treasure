@@ -1,14 +1,22 @@
 RegisterNetEvent('sl_treasurehunt:openTreasure', function()
     if not sl.treasureEvent then return CancelEvent() end
 
-    sl.stopTreasureEvent()
-
     local winner = source
+
+    local winnerPed = GetPlayerPed(winner)
+    local winnerCoords = GetEntityCoords(winnerPed)
+    local distance = #(winnerCoords - sl.treasureCoords)
+    local T <const> = sl.loadLocale()
+
+    if distance > 5 then 
+        return DropPlayer(winner, T["cheat_detected"])
+    end
+
+    sl.stopTreasureEvent()
 
     if not winner then return end
 
     local FRAMEWORK = sl.loadBridge()
-    local T <const> = sl.loadLocale()
 
     for i = 1, #GetPlayers() do
         if i ~= winner then

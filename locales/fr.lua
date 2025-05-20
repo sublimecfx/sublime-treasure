@@ -6,5 +6,8 @@ return {
     ["treasure_pickup"] = "~INPUT_PICKUP~ pour récupérer le trésor",
     ["stop_failed_not_started"] = "Impossible de stopper l'événement de chasse au trésor. Il n'est pas en cours.",
     ["treasure_found"] = "Le trésor a été trouvé !",
-    ["treasure_reward"] = "Vous avez gagné %s x%s !"
+    ["treasure_reward"] = "Vous avez gagné %s x%s !",
+    ["cheat_detected"] = "Cheat détecté ! Vous avez lancer l'événement 'openTreasure' alors que le trésor n'était pas à portée.",
+    ["teleported_to_treasure"] = "Vous avez été téléporté au trésor.",
+    ["treasure_event_not_found"] = "L'événement de chasse au trésor n'est pas en cours."
 }
