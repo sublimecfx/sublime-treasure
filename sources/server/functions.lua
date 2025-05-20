@@ -42,4 +42,34 @@ local function startTreasureEvent()
     TriggerClientEvent('sl_treasurehunt:startEvent', -1, ZONE, treasureCoords)
 end
 
+local function stopTreasureEvent()
+    TriggerClientEvent('sl_treasurehunt:stopEvent', -1)
+
+    sl.treasureEvent = false
+    sl.treasureEventZone = nil
+    sl.treasureEventStartTime = nil
+    sl.treasureEventEndTime = nil
+    sl.treasureCoords = nil
+end
+
+local function randomWithChance(t)
+    local totalChance = 0
+
+    for i = 1, #t do
+        totalChance = totalChance + t[i].chance
+    end
+    
+    local random = math.random(1, totalChance)
+    local currentChance = 0
+    
+    for i = 1, #t do
+        currentChance = currentChance + t[i].chance
+        if random <= currentChance then
+            return t[i]
+        end
+    end
+end
+
 sl.startTreasureEvent = startTreasureEvent
+sl.stopTreasureEvent = stopTreasureEvent
+sl.randomWithChance = randomWithChance

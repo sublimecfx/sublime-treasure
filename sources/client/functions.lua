@@ -21,6 +21,8 @@ local function openTreasure()
 
     local EFFECT <const> = sl.require('modules.effect.client')
     EFFECT.play(newProp, CONFIG.effects)
+
+    TriggerServerEvent('sl_treasurehunt:openTreasure')
 end
 
 ---@param zone table
@@ -72,7 +74,7 @@ local function startTreasureEvent(zone, treasureCoords)
 
                 if treasureDistance <= 3.0 then
                     interval = 0
-                    displayHelpText(T['treasure_found'])
+                    displayHelpText(T['treasure_pickup'])
                     SetFloatingHelpTextStyle(0, 2, 2, 0, 3, 0)
                     local entityCoords = GetEntityCoords(sl.treasureEntity)
                     local offset = GetEntityHeightAboveGround(sl.treasureEntity) + 1.0
@@ -97,4 +99,27 @@ local function startTreasureEvent(zone, treasureCoords)
     end)
 end
 
+local function stopTreasureEvent()
+    sl.treasureEvent = false
+    sl.treasureCoords = nil
+
+    local CONFIG <const> = sl.loadConfig('main')
+
+    if CONFIG.blip.enabled then
+        local BLIP <const> = sl.require('modules.blip.client')
+        BLIP.remove(sl.treasureEventBlip)
+        BLIP.remove(sl.treasureEventBlipZone)
+
+        sl.treasureEventBlip = nil
+        sl.treasureEventBlipZone = nil
+    end
+
+    if sl.treasureEntity then
+        local PROP <const> = sl.require('modules.prop.client')
+        PROP.delete(sl.treasureEntity)
+        sl.treasureEntity = nil
+    end
+end
+
 sl.startTreasureEvent = startTreasureEvent
+sl.stopTreasureEvent = stopTreasureEvent

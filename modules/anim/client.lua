@@ -1,3 +1,4 @@
+---@param dict string
 local function loadAnimation(dict)
     RequestAnimDict(dict)
     while not HasAnimDictLoaded(dict) do

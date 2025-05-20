@@ -30,7 +30,6 @@ end
 
 ---@param prop number
 local function delete(prop)
-    print(prop)
     if prop then
         DeleteObject(prop)
     end
