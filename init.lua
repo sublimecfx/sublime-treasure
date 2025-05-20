@@ -57,11 +57,33 @@ end
 
 local function loadBridge()
     if isResourceStarted('es_extended') then
-        return callModule('bridge.esx.' .. SERVICE)
+        return callModule('bridge.framework.esx.' .. SERVICE)
     elseif isResourceStarted('qb-core') then
-        return callModule('bridge.qb.' .. SERVICE)
+        return callModule('bridge.framework.qb.' .. SERVICE)
     else
-        return callModule('bridge.custom.' .. SERVICE)
+        return callModule('bridge.framework.custom.' .. SERVICE)
+    end
+end
+
+local function loadInventory()
+    if isResourceStarted('ox_inventory') then
+        return callModule('bridge.inventory.ox.' .. SERVICE)
+    elseif isResourceStarted('qb-inventory') then
+        return callModule('bridge.inventory.qb.' .. SERVICE)
+    elseif isResourceStarted('qs-inventory') then
+        return callModule('bridge.inventory.qs.' .. SERVICE)
+    elseif isResourceStarted('avp_inv_4') then
+        return callModule('bridge.inventory.avp.' .. SERVICE)
+    else
+        return callModule('bridge.inventory.custom.' .. SERVICE)
+    end
+end
+
+local function loadTarget()
+    if isResourceStarted('ox_target') then
+        return callModule('bridge.target.ox.' .. SERVICE)
+    elseif isResourceStarted('qb-target') then
+        return callModule('bridge.target.qb.' .. SERVICE)
     end
 end
 
@@ -81,7 +103,9 @@ local METADATA <const> = {
     require = callModule,
     loadBridge = loadBridge,
     loadConfig = loadConfig,
-    loadLocale = loadLocale
+    loadLocale = loadLocale,
+    loadInventory = loadInventory,
+    loadTarget = loadTarget
 }
 
 setmetatable(sl, {

@@ -36,12 +36,24 @@ end
 ---@param amount number
 local function addItem(id, name, amount)
     if not id or not name or not amount then return end
+
+    local player = ESX.GetPlayerFromId(id)
+
+    if not player then return end
+
+    return player.addInventoryItem(name, amount)
 end
 
 ---@param id number
 ---@param amount number
 local function addMoney(id, amount)
     if not id or not amount then return false end
+
+    local player = ESX.GetPlayerFromId(id)
+
+    if not player then return false end
+
+    return player.addMoney(amount)
 end
 
 ---@param id number
@@ -49,6 +61,11 @@ end
 ---@param amount number
 local function addWeapon(id, name, amount)
     if not id or not name or not amount then return false end
+
+    local player = ESX.GetPlayerFromId(id)
+
+    if not player then return false end
+
 end
 
 ---@param id number

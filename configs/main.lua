@@ -1,9 +1,11 @@
+-- INVENTORY SUPPORTED BY DEFAULT: ox_inventory, qb-inventory, qs-inventory, avp_inv_4
+
 local MAIN <const> = {
     eventFrequency = 1000 * 60 * 60 * 3, -- 3 hours
     eventDuration = 1000 * 60 * 60 * 1, -- 1 hour
 
     manualCommand = 'starttreasurehunt',
-    target = false, -- ox_target and qb-target supported
+    target = false, -- ox_target and qb-target supported by default
 
     rewards = {
         {type = 'item', name = 'water', label = 'Water', amount = 2, chance = 20}, -- 20% chance to get 2 water
