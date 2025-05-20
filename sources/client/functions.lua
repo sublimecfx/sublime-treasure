@@ -5,36 +5,22 @@ local function displayHelpText(text)
     EndTextCommandDisplayHelp(1, false, false, 0)
 end
 
----@param coords vector3
----@param entity number
-local function playTreasureEffects(coords, entity)
-    RequestNamedPtfxAsset("scr_xs_celebration")
-    while not HasNamedPtfxAssetLoaded("scr_xs_celebration") do
-        Wait(0)
-    end
-
-    for i = 1, 5 do
-        UseParticleFxAssetNextCall("scr_xs_celebration")
-        StartParticleFxNonLoopedOnEntity("scr_xs_confetti_burst", 
-            entity,
-            0.0, 0.0, -5.0,
-            0.0, 0.0, 0.0,
-            2.0, false, false, false)
-        Wait(200)
-    end
-end
-
 local function openTreasure()
-    local PROP <const> = sl.require('modules.prop.client')
     local CONFIG <const> = sl.loadConfig('main')
+    local playerPed = PlayerPedId()
 
+    local ANIM <const> = sl.require('modules.anim.client')
+    ANIM.play(playerPed, sl.treasureEntity, CONFIG.animations.open)
+
+    local PROP <const> = sl.require('modules.prop.client')
     PROP.delete(sl.treasureEntity)
     sl.treasureEntity = nil
 
     local newProp = PROP.create(CONFIG.treasureEntity.model.opened, sl.treasureCoords, CONFIG.treasureEntity.data)
     sl.treasureEntity = newProp
 
-    playTreasureEffects(sl.treasureCoords, newProp)
+    local EFFECT <const> = sl.require('modules.effect.client')
+    EFFECT.play(newProp, CONFIG.effects)
 end
 
 ---@param zone table

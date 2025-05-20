@@ -31,6 +31,21 @@ local MAIN <const> = {
             collision = true,
             invulnerable = true
         }
+    },
+
+    animations = {
+        open = {
+            dict = 'anim@amb@clubhouse@tutorial@bkr_tut_ig3@',
+            anim = 'machinic_loop_mechandplayer',
+            duration = 4000
+        }
+    },
+
+    effects = {
+        asset = 'scr_xs_celebration',
+        name = 'scr_xs_confetti_burst',
+        amount = 5,
+        duration = 200
     }
 }
 
