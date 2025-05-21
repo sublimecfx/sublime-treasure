@@ -20,7 +20,7 @@ local MAIN <const> = {
         label = 'Open Treasure',
         icon = 'fa-solid fa-gem',
         distance = 3.0
-    }
+    },
 
     blip = {
         enabled = true,
