@@ -6,19 +6,12 @@ local function displayHelpText(text)
 end
 
 local PROP <const> = sl.require('modules.prop.client')
-local ANIM <const> = sl.require('modules.anim.client')
-local EFFECT <const> = sl.require('modules.effect.client')
 local CONFIG <const> = sl.loadConfig('main')
 local T <const> = sl.loadLocale()
 
 local function openTreasure()
-    if sl.targetId then
-        local TARGET <const> = sl.loadTarget()
-        TARGET.remove(sl.targetId)
-        sl.targetId = nil
-    end
-
     local playerPed = PlayerPedId()
+    local ANIM <const> = sl.require('modules.anim.client')
     ANIM.play(playerPed, sl.treasureEntity, CONFIG.animations.open)
 
     PROP.delete(sl.treasureEntity)
@@ -27,6 +20,7 @@ local function openTreasure()
     local newProp = PROP.create(CONFIG.treasureEntity.model.opened, sl.treasureCoords, CONFIG.treasureEntity.data)
     sl.treasureEntity = newProp
 
+    local EFFECT <const> = sl.require('modules.effect.client')
     EFFECT.play(newProp, CONFIG.effects)
     TriggerServerEvent('sl_treasurehunt:openTreasure')
 end
