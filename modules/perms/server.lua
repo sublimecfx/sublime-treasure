@@ -5,10 +5,10 @@ local PERMS <const> = sl.loadConfig('perms')
 local function hasPermission(id)
     if not id then return false end
 
-    local framework = sl.loadBridge()
+    local FRAMEWORK <const> = sl.loadBridge()
 
     if type(id) == 'number' then
-        local group = framework.getGroup(id, PERMS.groups)
+        local group = FRAMEWORK.getGroup(id, PERMS.groups)
 
         if not group then return false end
 
