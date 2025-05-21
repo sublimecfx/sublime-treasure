@@ -65,7 +65,7 @@ local function startTreasureEvent(zone, treasureCoords)
         local PROP <const> = sl.require('modules.prop.client')
         local TARGET <const> = sl.loadTarget()
 
-        local key = CONFIG.target and '~INPUT_CHARACTER_WHEEL~' or '~INPUT_PICKUP~'
+        local key = CONFIG.target.enabled and '~INPUT_CHARACTER_WHEEL~' or '~INPUT_PICKUP~'
 
         while sl.treasureEvent do
             local interval = 5000
@@ -84,23 +84,22 @@ local function startTreasureEvent(zone, treasureCoords)
 
                 if treasureDistance <= 3.0 then
                     interval = 0
-                    displayHelpText(T['treasure_pickup']:format(key))
-                    SetFloatingHelpTextStyle(0, 2, 2, 0, 3, 0)
+
                     local entityCoords = GetEntityCoords(sl.treasureEntity)
                     local offset = GetEntityHeightAboveGround(sl.treasureEntity) + 1.0
+                    
+                    displayHelpText(T['treasure_pickup']:format(key))
+                    SetFloatingHelpTextStyle(0, 2, 2, 0, 3, 0)
                     SetFloatingHelpTextWorldPosition(0, entityCoords.x, entityCoords.y, entityCoords.z + offset)
 
-                    if not CONFIG.target then 
+                    if not CONFIG.target.enabled then 
                         if IsControlJustPressed(0, 51) then
                             openTreasure()
                             break
                         end
                     else
                         if not sl.targetCreated then
-                            print('creating target')
-                            local label = string.upper(string.sub(T['treasure_pickup'], 9, 9)) .. string.sub(T['treasure_pickup'], 10, -1)
-                            local target = TARGET.create(sl.treasureEntity, label, 'fa-solid fa-gem', 3.0, openTreasure)
-
+                            local target = TARGET.create(sl.treasureEntity, CONFIG.target.label, CONFIG.target.icon, CONFIG.target.distance, openTreasure)
                             sl.targetCreated = true
                         end
                     end
@@ -109,6 +108,7 @@ local function startTreasureEvent(zone, treasureCoords)
                 if sl.treasureEntity then
                     PROP.delete(sl.treasureEntity)
                     sl.treasureEntity = nil
+                    sl.targetCreated = false
                 end
             end
 
@@ -120,6 +120,7 @@ end
 local function stopTreasureEvent()
     sl.treasureEvent = false
     sl.treasureCoords = nil
+    sl.targetCreated = false
 
     local CONFIG <const> = sl.loadConfig('main')
 

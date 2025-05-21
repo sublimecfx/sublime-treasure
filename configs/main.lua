@@ -6,7 +6,6 @@ local MAIN <const> = {
 
     manualCommand = 'starttreasurehunt',
     tpCommand = 'gototreasure', -- Command to teleport to the treasure
-    target = true, -- ox_target and qb-target supported by default
 
     rewards = {
         {type = 'item', name = 'water', label = 'Water', amount = 2, chance = 20}, -- 20% chance to get 2 water
@@ -15,6 +14,13 @@ local MAIN <const> = {
         {type = 'car', label = 'Adder', name = 'adder', amount = 1, chance = 5} -- 5% chance to get an adder
         -- ...
     },
+
+    target = {
+        enabled = true, -- ox_target and qb-target supported by default
+        label = 'Open Treasure',
+        icon = 'fa-solid fa-gem',
+        distance = 3.0
+    }
 
     blip = {
         enabled = true,
@@ -49,7 +55,7 @@ local MAIN <const> = {
         name = 'scr_xs_confetti_burst',
         amount = 5,
         duration = 200
-    }
+    },
 }
 
 return MAIN
