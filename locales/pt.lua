@@ -3,7 +3,7 @@ return {
     ["start_failed_no_zone"] = "Não foi possível iniciar o evento de caçada de tesouro. Nenhuma zona encontrada.",
     ["start_failed_already_started"] = "Não foi possível iniciar o evento de caçada de tesouro. Já está em andamento.",
     ["blip_name"] = "Caçada de tesouro",
-    ["treasure_pickup"] = "~INPUT_PICKUP~ para coletar o tesouro",
+    ["treasure_pickup"] = "%s para coletar o tesouro",
     ["stop_failed_not_started"] = "Não foi possível parar o evento de caçada de tesouro. Não está em andamento.",
     ["treasure_found"] = "O tesouro foi encontrado!",
     ["treasure_reward"] = "Você ganhou %s x%s!",

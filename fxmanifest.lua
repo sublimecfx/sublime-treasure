@@ -17,7 +17,8 @@ files {
     'modules/**/server.lua',
     'modules/**/client.lua',
     'bridge/framework/**/server.lua',
-    'bridge/inventory/**/server.lua'
+    'bridge/inventory/**/server.lua',
+    'bridge/target/**/client.lua'
 }
 
 shared_scripts {

@@ -6,7 +6,7 @@ local MAIN <const> = {
 
     manualCommand = 'starttreasurehunt',
     tpCommand = 'gototreasure', -- Command to teleport to the treasure
-    target = false, -- ox_target and qb-target supported by default
+    target = true, -- ox_target and qb-target supported by default
 
     rewards = {
         {type = 'item', name = 'water', label = 'Water', amount = 2, chance = 20}, -- 20% chance to get 2 water

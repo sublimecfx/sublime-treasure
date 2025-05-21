@@ -6,6 +6,12 @@ local function displayHelpText(text)
 end
 
 local function openTreasure()
+    if sl.targetId then
+        local TARGET <const> = sl.loadTarget()
+        TARGET.remove(sl.targetId)
+        sl.targetId = nil
+    end
+
     local CONFIG <const> = sl.loadConfig('main')
     local playerPed = PlayerPedId()
 
@@ -56,13 +62,17 @@ local function startTreasureEvent(zone, treasureCoords)
     end
 
     CreateThread(function()
+        local PROP <const> = sl.require('modules.prop.client')
+        local TARGET <const> = sl.loadTarget()
+
+        local key = CONFIG.target and '~INPUT_CHARACTER_WHEEL~' or '~INPUT_PICKUP~'
+
         while sl.treasureEvent do
             local interval = 5000
             local playerPed = PlayerPedId()
             local playerCoords = GetEntityCoords(playerPed)
             local tcv3 = vec3(treasureCoords.x, treasureCoords.y, treasureCoords.z)
             local treasureDistance = #(playerCoords - tcv3)
-            local PROP <const> = sl.require('modules.prop.client')
 
             if treasureDistance <= 50.0 then
                 interval = 1000
@@ -74,7 +84,7 @@ local function startTreasureEvent(zone, treasureCoords)
 
                 if treasureDistance <= 3.0 then
                     interval = 0
-                    displayHelpText(T['treasure_pickup'])
+                    displayHelpText(T['treasure_pickup']:format(key))
                     SetFloatingHelpTextStyle(0, 2, 2, 0, 3, 0)
                     local entityCoords = GetEntityCoords(sl.treasureEntity)
                     local offset = GetEntityHeightAboveGround(sl.treasureEntity) + 1.0
@@ -84,6 +94,14 @@ local function startTreasureEvent(zone, treasureCoords)
                         if IsControlJustPressed(0, 51) then
                             openTreasure()
                             break
+                        end
+                    else
+                        if not sl.targetCreated then
+                            print('creating target')
+                            local label = string.upper(string.sub(T['treasure_pickup'], 9, 9)) .. string.sub(T['treasure_pickup'], 10, -1)
+                            local target = TARGET.create(sl.treasureEntity, label, 'fa-solid fa-gem', 3.0, openTreasure)
+
+                            sl.targetCreated = true
                         end
                     end
                 end
