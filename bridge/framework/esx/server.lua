@@ -58,21 +58,20 @@ end
 
 ---@param id number
 ---@param name string
----@param amount number
-local function addWeapon(id, name, amount)
-    if not id or not name or not amount then return false end
+local function addWeapon(id, name)
+    if not id or not name then return false end
 
     local player = ESX.GetPlayerFromId(id)
 
     if not player then return end
 
-    return player.addInventoryItem(name, amount)
+    return player.addInventoryItem(name, 1)
 end
 
 ---@param id number
 ---@param model string
 ---@param props table
-local function addVehicle(id, model, props)
+local function addVehicle(id, model, props, plate)
     if not id or not model or not props then return false, nil, nil end
 
     local license = GetPlayerIdentifierByType(id, 'license')
@@ -81,7 +80,7 @@ local function addVehicle(id, model, props)
 
     MySQL.insert('INSERT INTO owned_vehicles (owner, plate, vehicle) VALUES (?, ?, ?)', {
         license,
-        props.plate,
+        plate,
         json.encode(props)
     }, function (result)
         if result then

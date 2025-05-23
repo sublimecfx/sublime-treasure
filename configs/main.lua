@@ -10,8 +10,8 @@ local MAIN <const> = {
     rewards = {
         {type = 'item', name = 'water', label = 'Water', amount = 2, chance = 20}, -- 20% chance to get 2 water
         {type = 'money', label = 'Money', amount = 100, chance = 80}, -- 80% chance to get 100 money
-        {type = 'weapon', label = 'Pistol', name = 'weapon_pistol', amount = 1, chance = 10}, -- 10% chance to get 1 pistol
-        {type = 'car', label = 'Adder', name = 'adder', amount = 1, chance = 5} -- 5% chance to get an adder
+        {type = 'weapon', label = 'Pistol', name = 'weapon_pistol', chance = 10}, -- 10% chance to get 1 pistol
+        {type = 'car', label = 'Adder', name = 'adder', chance = 5} -- 5% chance to get an adder
         -- ...
     },
 

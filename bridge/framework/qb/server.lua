@@ -59,20 +59,43 @@ end
 
 ---@param id number
 ---@param name string
----@param amount number
-local function addWeapon(id, name, amount)
-    if not id or not name or not amount then return false end
+local function addWeapon(id, name)
+    if not id or not name then return false end
 
     local T <const> = sl.loadLocale()
 
-    return exports['qb-inventory']:AddItem(id, name, amount, false, false, T['blip_name'])
+    return exports['qb-inventory']:AddItem(id, name, 1, false, false, T['blip_name'])
 end
 
 ---@param id number
----@param name string
----@param amount number
-local function addVehicle(id, name, amount)
-    if not id or not name or not amount then return false end
+---@param model string
+---@param props table
+---@param plate string
+local function addVehicle(id, model, props, plate)
+    if not id or not model or not props or not plate then return false end
+
+    local player = QBCore.Functions.GetPlayer(id)
+    local cid = player.PlayerData.citizenid
+    local license = GetPlayerIdentifierByType(id, 'license')
+
+    if not license then return false end
+
+    MySQL.insert('INSERT INTO player_vehicles (license, citizenid, vehicle, hash, mods, plate, garage, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', {
+        license,
+        cid,
+        model,
+        GetHashKey(model),
+        '{}',
+        plate,
+        'pillboxgarage',
+        0
+    }, function (result)
+        if result then
+            return true
+        end
+
+        return false
+    end)
 end
 
 return {

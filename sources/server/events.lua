@@ -37,12 +37,19 @@ RegisterNetEvent('sl_treasurehunt:openTreasure', function()
     end
 
     if reward.type == 'weapon' then
-        FRAMEWORK.addWeapon(winner, reward.name, reward.amount)
+        FRAMEWORK.addWeapon(winner, reward.name)
     end
     
     if reward.type == 'car' then
-        FRAMEWORK.addVehicle(winner, reward.name, reward.amount)
+        TriggerClientEvent('sl_treasurehunt:spawnVehicle', winner, reward.name)
     end
 
     FRAMEWORK.notify(winner, T["treasure_reward"]:format(reward.label, reward.amount), 'success', 5000)
+end)
+
+
+RegisterNetEvent('sl_treasurehunt:giveVehicle', function(model, plate, props)
+    local FRAMEWORK <const> = sl.loadBridge()
+
+    FRAMEWORK.addVehicle(source, model, props, plate)
 end)
