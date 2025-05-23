@@ -1,5 +1,3 @@
--- INVENTORY SUPPORTED BY DEFAULT: ox_inventory, qb-inventory, qs-inventory, avp_inv_4
-
 local MAIN <const> = {
     eventFrequency = 1000 * 60 * 60 * 3, -- 3 hours
     eventDuration = 1000 * 60 * 60 * 1, -- 1 hour

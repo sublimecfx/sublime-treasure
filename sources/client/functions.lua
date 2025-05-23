@@ -76,8 +76,10 @@ local function startTreasureEvent(zone, treasureCoords)
                     SetFloatingHelpTextWorldPosition(0, entityCoords.x, entityCoords.y, entityCoords.z + offset)
 
                     if CONFIG.target.enabled then 
-                        local target = TARGET.create(sl.treasureEntity, CONFIG.target.label, CONFIG.target.icon, CONFIG.target.distance, openTreasure)
-                        sl.targetCreated = true
+                        if not sl.targetCreated then
+                            local target = TARGET.create(sl.treasureEntity, CONFIG.target.label, CONFIG.target.icon, CONFIG.target.distance, openTreasure)
+                            sl.targetCreated = true
+                        end
                     else
                         if IsControlJustPressed(0, 51) then
                             openTreasure()

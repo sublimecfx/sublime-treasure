@@ -70,6 +70,8 @@ local function loadTarget()
         return callModule('bridge.target.ox.' .. SERVICE)
     elseif isResourceStarted('qb-target') then
         return callModule('bridge.target.qb.' .. SERVICE)
+    else
+        return callModule('bridge.target.custom.' .. SERVICE)
     end
 end
 
