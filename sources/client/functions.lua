@@ -1,13 +1,12 @@
 local CONFIG <const> = sl.loadConfig('main')
 
-if CONFIG.helpText then
-    ---@param text string
-    local function displayHelpText(text)
-        BeginTextCommandDisplayHelp("STRING")
-        AddTextComponentSubstringPlayerName(text)
-        EndTextCommandDisplayHelp(1, false, false, 0)
-    end
+---@param text string
+local function displayHelpText(text)
+    BeginTextCommandDisplayHelp("STRING")
+    AddTextComponentSubstringPlayerName(text)
+    EndTextCommandDisplayHelp(1, false, false, 0)
 end
+
 
 local PROP <const> = sl.require('modules.prop.client')
 local T <const> = sl.loadLocale()
@@ -72,11 +71,9 @@ local function startTreasureEvent(zone, treasureCoords)
                     local entityCoords = GetEntityCoords(sl.treasureEntity)
                     local offset = GetEntityHeightAboveGround(sl.treasureEntity) + 1.0
                     
-                    if CONFIG.helpText then
-                        displayHelpText(T['treasure_pickup']:format(KEY))
-                        SetFloatingHelpTextStyle(0, 2, 2, 0, 3, 0)
-                        SetFloatingHelpTextWorldPosition(0, entityCoords.x, entityCoords.y, entityCoords.z + offset)
-                    end
+                    displayHelpText(T['treasure_pickup']:format(KEY))
+                    SetFloatingHelpTextStyle(0, 2, 2, 0, 3, 0)
+                    SetFloatingHelpTextWorldPosition(0, entityCoords.x, entityCoords.y, entityCoords.z + offset)
 
                     if CONFIG.target.enabled then 
                         local target = TARGET.create(sl.treasureEntity, CONFIG.target.label, CONFIG.target.icon, CONFIG.target.distance, openTreasure)

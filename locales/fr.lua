@@ -9,5 +9,6 @@ return {
     ["treasure_reward"] = "Vous avez gagné %s x%s !",
     ["cheat_detected"] = "Cheat détecté ! Vous avez lancer l'événement 'openTreasure' alors que le trésor n'était pas à portée.",
     ["teleported_to_treasure"] = "Vous avez été téléporté au trésor.",
-    ["treasure_event_not_found"] = "L'événement de chasse au trésor n'est pas en cours."
+    ["treasure_event_not_found"] = "L'événement de chasse au trésor n'est pas en cours.",
+    ["invalid_model"] = "Modèle invalide."
 }

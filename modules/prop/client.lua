@@ -7,6 +7,8 @@ local function create(model, coords, data)
 
     if model then
         prop = CreateObject(model, coords.x, coords.y, coords.z, false, false, false)
+
+        SetModelAsNoLongerNeeded(model)
     end
 
     if coords.w then 
