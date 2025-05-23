@@ -2,7 +2,7 @@
 
 An automatic and legal event system that regularly triggers an immersive treasure hunt in the city or rural areas.
 
-## 🎯 Features
+## Features
 
 ### Treasure Hunt System
 - Automatic events every 3 hours
@@ -66,12 +66,12 @@ An automatic and legal event system that regularly triggers an immersive treasur
 - Discord webhook configuration
 - Language selection
 
-## 📋 Requirements
+## Requirements
 - oxmysql
 - A supported framework (ESX or QB-Core)
 - Discord webhook URLs (for logging)
 
-## 🔧 Installation
+## Installation
 1. Make sure you have the requirements installed
 2. Place the resource in your `resources` folder
 3. Add `ensure sublime-treasure` to your `server.cfg`
@@ -80,7 +80,7 @@ An automatic and legal event system that regularly triggers an immersive treasur
 6. Choose your preferred language in `configs/locale.lua`
 7. Restart your server
 
-## 🎮 Usage
+## Usage
 - Treasure hunts trigger automatically
 - Players can see blips on the map
 - Use the target system to interact with treasures
@@ -88,7 +88,7 @@ An automatic and legal event system that regularly triggers an immersive treasur
 - All actions are logged to Discord
 - Staff actions are tracked and reported
 
-## ⚙️ Configuration
+## Configuration
 All parameters are configurable in the `configs/` folder:
 - `main.lua` : Main configuration
 - `zones.lua` : Treasure spawn zones
