@@ -70,10 +70,26 @@ local function addWeapon(id, name, amount)
 end
 
 ---@param id number
----@param name string
----@param amount number
-local function addVehicle(id, name, amount)
-    if not id or not name or not amount then return false, nil, nil end
+---@param model string
+---@param props table
+local function addVehicle(id, model, props)
+    if not id or not model or not props then return false, nil, nil end
+
+    local license = GetPlayerIdentifierByType(id, 'license')
+
+    if not license then return false end
+
+    MySQL.insert('INSERT INTO owned_vehicles (owner, plate, vehicle) VALUES (?, ?, ?)', {
+        license,
+        props.plate,
+        json.encode(props)
+    }, function (result)
+        if result then
+            return true
+        end
+
+        return false
+    end)
 end
 
 return {

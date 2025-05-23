@@ -17,6 +17,7 @@ files {
     'modules/**/server.lua',
     'modules/**/client.lua',
     'bridge/framework/**/server.lua',
+    'bridge/framework/**/client.lua',
     'bridge/target/**/client.lua'
 }
 
@@ -30,4 +31,8 @@ client_scripts {
 
 server_scripts {
     'sources/server/*.lua'
+}
+
+dependencies {
+    'oxmysql'
 }
