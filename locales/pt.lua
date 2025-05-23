@@ -10,5 +10,6 @@ return {
     ["cheat_detected"] = "Cheat detectado! Você usou a tecla 'openTreasure' enquanto o tesouro não estava em alcance.",
     ["teleported_to_treasure"] = "Você foi teletransportado para o tesouro.",
     ["treasure_event_not_found"] = "O evento de caçada de tesouro não está em andamento.",
-    ["invalid_model"] = "Modelo inválido."
+    ["invalid_model"] = "Modelo inválido.",
+    ["invalid_webhook_or_message"] = "Webhook ou mensagem inválida."
 }

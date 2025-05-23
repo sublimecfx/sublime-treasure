@@ -10,5 +10,6 @@ return {
     ["cheat_detected"] = "Cheat detected! You have used the 'openTreasure' key while the treasure was not in range.",
     ["teleported_to_treasure"] = "You have been teleported to the treasure.",
     ["treasure_event_not_found"] = "The treasure event is not running.",
-    ["invalid_model"] = "Invalid model."
+    ["invalid_model"] = "Invalid model.",
+    ["invalid_webhook_or_message"] = "Invalid webhook or message."
 }

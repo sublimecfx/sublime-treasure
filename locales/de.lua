@@ -10,5 +10,6 @@ return {
     ["cheat_detected"] = "Cheat erkannt! Du hast den Schlüssel 'openTreasure' gefunden, obwohl der Schatz nicht in der Nähe war.",
     ["teleported_to_treasure"] = "Du wurdest zum Schatz teleportiert.",
     ["treasure_event_not_found"] = "Der Schatz wurde nicht gefunden.",
-    ["invalid_model"] = "Ungültiges Modell."
+    ["invalid_model"] = "Ungültiges Modell.",
+    ["invalid_webhook_or_message"] = "Ungültiger Webhook oder Nachricht."
 }
