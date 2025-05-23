@@ -65,20 +65,6 @@ local function loadBridge()
     end
 end
 
-local function loadInventory()
-    if isResourceStarted('ox_inventory') then
-        return callModule('bridge.inventory.ox.' .. SERVICE)
-    elseif isResourceStarted('qb-inventory') then
-        return callModule('bridge.inventory.qb.' .. SERVICE)
-    elseif isResourceStarted('qs-inventory') then
-        return callModule('bridge.inventory.qs.' .. SERVICE)
-    elseif isResourceStarted('avp_inv_4') then
-        return callModule('bridge.inventory.avp.' .. SERVICE)
-    else
-        return callModule('bridge.inventory.custom.' .. SERVICE)
-    end
-end
-
 local function loadTarget()
     if isResourceStarted('ox_target') then
         return callModule('bridge.target.ox.' .. SERVICE)
@@ -104,7 +90,6 @@ local METADATA <const> = {
     loadBridge = loadBridge,
     loadConfig = loadConfig,
     loadLocale = loadLocale,
-    loadInventory = loadInventory,
     loadTarget = loadTarget
 }
 

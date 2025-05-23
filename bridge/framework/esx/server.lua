@@ -64,8 +64,9 @@ local function addWeapon(id, name, amount)
 
     local player = ESX.GetPlayerFromId(id)
 
-    if not player then return false end
+    if not player then return end
 
+    return player.addInventoryItem(name, amount)
 end
 
 ---@param id number

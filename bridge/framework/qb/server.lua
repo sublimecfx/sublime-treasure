@@ -38,6 +38,10 @@ end
 ---@param amount number
 local function addItem(id, name, amount)
     if not id or not name or not amount then return end
+
+    local T <const> = sl.loadLocale()
+
+    return exports['qb-inventory']:AddItem(id, name, amount, false, false, T['blip_name'])
 end
 
 ---@param id number
@@ -45,6 +49,12 @@ end
 ---@return boolean
 local function addMoney(id, amount)
     if not id or not amount then return false end
+
+    local player = QBCore.Functions.GetPlayer(id)
+
+    if not player then return false end
+
+    return player.Functions.AddMoney('cash', amount)
 end
 
 ---@param id number
@@ -52,6 +62,10 @@ end
 ---@param amount number
 local function addWeapon(id, name, amount)
     if not id or not name or not amount then return false end
+
+    local T <const> = sl.loadLocale()
+
+    return exports['qb-inventory']:AddItem(id, name, amount, false, false, T['blip_name'])
 end
 
 ---@param id number
