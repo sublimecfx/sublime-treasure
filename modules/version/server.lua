@@ -27,7 +27,7 @@ local function check(repository) -- https://github.com/overextended/ox_lib/blob/
 
                 if current ~= minimum then
                     if current < minimum then
-                        return print(('^3An update is available for %s (current version: %s)\r\n%s^0'):format(resource, currentVersion, response.html_url))
+                        return print(('^3An update is available for %s \nCurrent version: %s\nLatest version: %s\nLink: %s^0'):format(resource, currentVersion, latestVersion, response.html_url))
                     else break end
                 end
             end
