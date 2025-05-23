@@ -3,9 +3,9 @@
 local MAIN <const> = {
     eventFrequency = 1000 * 60 * 60 * 3, -- 3 hours
     eventDuration = 1000 * 60 * 60 * 1, -- 1 hour
-
     manualCommand = 'starttreasurehunt',
     tpCommand = 'gototreasure', -- Command to teleport to the treasure
+    helpText = true,
 
     rewards = {
         {type = 'item', name = 'water', label = 'Water', amount = 2, chance = 20}, -- 20% chance to get 2 water
