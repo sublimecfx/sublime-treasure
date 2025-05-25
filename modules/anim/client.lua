@@ -1,5 +1,7 @@
 ---@param dict string
 local function loadAnimation(dict)
+    if not dict or HasAnimDictLoaded(dict) then return end
+
     RequestAnimDict(dict)
     while not HasAnimDictLoaded(dict) do
         Wait(0)
@@ -8,6 +10,8 @@ end
 
 ---@param playerPed number
 local function stop(playerPed)
+    if not playerPed then return end
+
     return ClearPedTasks(playerPed)
 end
 
@@ -15,6 +19,8 @@ end
 ---@param entity number
 ---@param animation table
 local function play(playerPed, entity, animation)
+    if not playerPed or not animation then return end
+
     local dict = animation.dict
     local anim = animation.anim
     
