@@ -9,6 +9,7 @@ local SERVICE <const> = (IsDuplicityVersion() and 'server') or 'client'
 ---@field loadBridge fun(): any
 ---@field loadConfig fun(name: string): any
 ---@field loadLocale fun(): any
+---@field loadTarget fun(): any
 local sl = {}
 
 local module_loaded = {}
