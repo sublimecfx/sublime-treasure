@@ -1,4 +1,4 @@
-# Changelog - Sublime Treasure v1.1.0
+# Changelog - Sublime Treasure v1.0.2
 
 ## Performance Optimizations
 
