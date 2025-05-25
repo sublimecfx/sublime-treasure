@@ -104,3 +104,42 @@ setmetatable(sl, {
 })
 
 _ENV.sl = sl
+
+-- Ajouter cette fonction pour mettre en cache les configurations
+local configCache = {}
+function sl.loadConfig(name)
+    if configCache[name] then return configCache[name] end
+    
+    local config = LoadResourceFile(GetCurrentResourceName(), ('configs/%s.lua'):format(name))
+    if not config then return {} end
+    
+    local chunk, err = load(config, ('configs/%s.lua'):format(name), 't')
+    if not chunk then return {} end
+    
+    local success, result = pcall(chunk)
+    if not success then return {} end
+    
+    configCache[name] = result
+    return result
+end
+
+-- Même principe pour les locales
+local localeCache = nil
+function sl.loadLocale()
+    if localeCache then return localeCache end
+    
+    local locale = sl.loadConfig('locale')
+    local localeName = locale.locale or 'en'
+    
+    local localeFile = LoadResourceFile(GetCurrentResourceName(), ('locales/%s.lua'):format(localeName))
+    if not localeFile then return {} end
+    
+    local chunk, err = load(localeFile, ('locales/%s.lua'):format(localeName), 't')
+    if not chunk then return {} end
+    
+    local success, result = pcall(chunk)
+    if not success then return {} end
+    
+    localeCache = result
+    return result
+end

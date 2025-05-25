@@ -29,6 +29,30 @@ RegisterNetEvent('sl_treasurehunt:openTreasure', function()
     local tcv3 = vec3(sl.treasureCoords.x, sl.treasureCoords.y, sl.treasureCoords.z)
     local distance = #(winnerCoords - tcv3)
 
+    -- Optimisation: Utiliser une vérification de distance plus efficace
+    -- Vérifier d'abord si le joueur est dans le même quadrant de la carte
+    local xDiff = math.abs(winnerCoords.x - tcv3.x)
+    local yDiff = math.abs(winnerCoords.y - tcv3.y)
+    
+    if xDiff > 100 or yDiff > 100 then
+        LOGS.send(WEBHOOKS.cheat, T['log_cheat_distance'], T['log_cheat_distance_desc'], 'cheat', {
+            player = winner,
+            coords = {
+                x = winnerCoords.x,
+                y = winnerCoords.y,
+                z = winnerCoords.z
+            },
+            treasureCoords = {
+                x = tcv3.x,
+                y = tcv3.y,
+                z = tcv3.z
+            },
+            distance = distance
+        })
+        return DropPlayer(winner, T["cheat_detected"])
+    end
+    
+    -- Vérification précise de la distance seulement si nécessaire
     if distance > 5 then 
         LOGS.send(WEBHOOKS.cheat, T['log_cheat_distance'], T['log_cheat_distance_desc'], 'cheat', {
             player = winner,
@@ -54,9 +78,18 @@ RegisterNetEvent('sl_treasurehunt:openTreasure', function()
 
     local FRAMEWORK = sl.loadBridge()
 
-    for i = 1, #GetPlayers() do
-        if i ~= winner then
-            FRAMEWORK.notify(i, T["treasure_found"], 'info', 5000)
+    -- Au lieu d'envoyer une notification à chaque joueur individuellement
+    local players = GetPlayers()
+    local notificationData = {
+        message = T["treasure_found"],
+        type = 'info',
+        duration = 5000
+    }
+    
+    for i = 1, #players do
+        local playerId = tonumber(players[i])
+        if playerId ~= winner then
+            FRAMEWORK.notify(playerId, notificationData.message, notificationData.type, notificationData.duration)
         end
     end
 

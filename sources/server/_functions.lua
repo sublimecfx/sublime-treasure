@@ -22,6 +22,8 @@ local function startTreasureEvent()
     sl.treasureEventZone = ZONE
 
     CreateThread(function()
+        -- Utiliser un intervalle plus long pour vérifier la fin de l'événement
+        -- 10 secondes est excessif pour une simple vérification de temps
         while sl.treasureEvent do
             if os.time() >= sl.treasureEventEndTime then
                 sl.treasureEvent = false
@@ -32,7 +34,7 @@ local function startTreasureEvent()
                 break
             end
 
-            Wait(10000)
+            Wait(30000) -- Vérifier toutes les 30 secondes au lieu de 10 secondes
         end
     end)
 

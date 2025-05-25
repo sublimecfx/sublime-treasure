@@ -6,7 +6,7 @@ use_experimental_fxv2_oal 'yes'
 
 author 'Atoshi (Sublime Store)'
 description 'An automatic and legal event system that regularly triggers an immersive treasure hunt in the city or rural areas.'
-version '1.0.1'
+version '1.0.2'
 discord 'https://discord.gg/4Y3PWwfHxq'
 repository 'https://github.com/sublimecfx/sublime-treasure'
 

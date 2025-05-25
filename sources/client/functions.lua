@@ -60,14 +60,18 @@ local function startTreasureEvent(zone, treasureCoords)
             local playerCoords = GetEntityCoords(playerPed)
             local treasureDistance = #(playerCoords - treasureCoordsVec3)
 
-            local interval = treasureDistance > 50.0 and 5000 or (treasureDistance > 3.0 and 1000 or 0)
-
+            -- Optimisation: Utiliser des intervalles adaptatifs plus efficaces
+            local interval = 1000 -- Intervalle par défaut: 1 seconde
+            
             if treasureDistance <= 50.0 then
+                interval = 500 -- Réduire à 500ms quand on s'approche
+                
                 if not sl.treasureEntity then
                     sl.treasureEntity = PROP.create(CONFIG.treasureEntity.model.closed, treasureCoords, CONFIG.treasureEntity.data)
                 end
 
                 if treasureDistance <= 3.0 then
+                    interval = 0 -- Pas d'attente quand on est très proche
                     local entityCoords = GetEntityCoords(sl.treasureEntity)
                     local offset = GetEntityHeightAboveGround(sl.treasureEntity) + 1.0
                     

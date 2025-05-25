@@ -1,5 +1,9 @@
 local T <const> = sl.loadLocale()
 
+-- Ajouter une file d'attente pour les webhooks
+local webhookQueue = {}
+local processingQueue = false
+
 ---@param message string
 ---@param type 'info' | 'cheat'
 ---@param data table
@@ -80,7 +84,29 @@ local function send(webhook, title, message, type, data)
         }
     }
 
-    return PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({embeds = embed}), {['Content-Type'] = 'application/json'})
+    -- Ajouter à la file d'attente au lieu d'envoyer immédiatement
+    table.insert(webhookQueue, {
+        webhook = webhook,
+        payload = json.encode({embeds = embed})
+    })
+    
+    -- Démarrer le traitement de la file d'attente si ce n'est pas déjà fait
+    if not processingQueue then
+        processingQueue = true
+        processWebhookQueue()
+    end
+end
+
+-- Fonction pour traiter la file d'attente
+local function processWebhookQueue()
+    CreateThread(function()
+        while #webhookQueue > 0 do
+            local item = table.remove(webhookQueue, 1)
+            PerformHttpRequest(item.webhook, function(err, text, headers) end, 'POST', item.payload, {['Content-Type'] = 'application/json'})
+            Wait(1000) -- Attendre 1 seconde entre chaque envoi pour éviter le rate limiting
+        end
+        processingQueue = false
+    end)
 end
 
 return {
